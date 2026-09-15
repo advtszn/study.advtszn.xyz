@@ -1,3 +1,115 @@
 @use "./variables.scss" as *;
 
-// put your custom CSS here!
+// Breadcrumbs: more room before the title
+
+:root body .page .breadcrumb-container {
+  margin-bottom: 1.25rem;
+}
+
+// Tables: even spacing above and below (Vesper zeroes heading margins, so the
+// table's own top-only margin left no gap before the next heading)
+
+:root body .page article .table-container {
+  margin: 1.25rem 0;
+
+  & > table {
+    margin: 0;
+  }
+}
+
+// TOC: collapsing clips the box to 1.4rem, which hides Vesper's taller header,
+// so size it to the header and hide the list instead
+
+:root body .page .toc:has(button.toc-header.collapsed) {
+  flex: 0 0 auto;
+
+  & > :not(button.toc-header) {
+    display: none;
+  }
+}
+
+// Link lists: lists whose items are links, styled like advtszn.xyz/writings
+
+:root body .page article :is(ul, ol):has(> li > a:only-child) {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+
+  & > li:has(> a:only-child) {
+    padding-left: 0.375rem;
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  & > li > a:only-child {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    color: var(--dark);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+// Explorer: minimal
+
+.page .explorer {
+  button.desktop-explorer h2,
+  button.mobile-explorer h2 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .fold {
+    width: 12px;
+    height: 12px;
+    opacity: 0.5;
+  }
+
+  .explorer-content {
+    margin-top: 0.75rem;
+  }
+
+  .explorer-content ul li > a,
+  .folder-container div > a,
+  .folder-container div > button span {
+    display: inline-block;
+    font-family: var(--bodyFont);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+    color: var(--darkgray);
+    opacity: 1;
+    transition: color 0.2s ease;
+  }
+
+  .explorer-content ul li > a:hover,
+  .folder-container div > a:hover,
+  .folder-container:hover div > button span {
+    color: var(--dark);
+  }
+
+  .explorer-content ul li > a.active {
+    color: var(--dark);
+    font-weight: 500;
+  }
+
+  .folder-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+    color: var(--gray);
+  }
+
+  .explorer-content .folder-outer > ul {
+    margin-left: 5px;
+    padding-left: 0.75rem;
+    border-left: 1px solid var(--lightgray);
+  }
+}
