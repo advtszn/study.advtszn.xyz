@@ -1,0 +1,11 @@
+{
+  "buildCommand": "bun prebuild && bun quartz build",
+  "outputDirectory": "public",
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/:path*", "destination": "/:path*.html" }
+  ],
+  "git": {
+    "deploymentEnabled": false
+  }
+}
